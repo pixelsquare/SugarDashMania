@@ -1,0 +1,108 @@
+fileFormatVersion: 2
+guid: 2198ae80eb5dd234e93f44fdf9741848
+TextureImporter:
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  seamlessCubemap: 0
+  textureFormat: -3
+  maxTextureSize: 4096
+  textureSettings:
+    filterMode: -1
+    aniso: 1
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: Active_Play Button_0
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 1641
+        width: 335
+        height: 269
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: Active_Play Button_2
+      rect:
+        serializedVersion: 2
+        x: 847
+        y: 1640
+        width: 336
+        height: 243
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: Active_Play Button_3
+      rect:
+        serializedVersion: 2
+        x: 1557
+        y: 1645
+        width: 319
+        height: 252
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: Active_Play Button_7
+      rect:
+        serializedVersion: 2
+        x: 1585
+        y: 1029
+        width: 297
+        height: 252
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: Active_Play Button_8
+      rect:
+        serializedVersion: 2
+        x: 92
+        y: 1028
+        width: 361
+        height: 276
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: Active_Play Button_9
+      rect:
+        serializedVersion: 2
+        x: 839
+        y: 1047
+        width: 345
+        height: 216
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: Active_Play Button_10
+      rect:
+        serializedVersion: 2
+        x: 843
+        y: 301
+        width: 344
+        height: 267
+      alignment: 0
+      pivot: {x: .5, y: .5}
+  spritePackingTag: 
+  userData: 

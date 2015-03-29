@@ -1,0 +1,139 @@
+fileFormatVersion: 2
+guid: 18dc0df4321333d49ad8c3f541375939
+TextureImporter:
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  seamlessCubemap: 0
+  textureFormat: -3
+  maxTextureSize: 4096
+  textureSettings:
+    filterMode: -1
+    aniso: 1
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings:
+  - buildTarget: iPhone
+    maxTextureSize: 1024
+    textureFormat: -2
+    compressionQuality: 50
+  spriteSheet:
+    sprites:
+    - name: Taffy Bomb Spritesheet_0
+      rect:
+        serializedVersion: 2
+        x: 47
+        y: 788
+        width: 162
+        height: 176
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Taffy Bomb Spritesheet_1
+      rect:
+        serializedVersion: 2
+        x: 269
+        y: 788
+        width: 163
+        height: 192
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: Taffy Bomb Spritesheet_2
+      rect:
+        serializedVersion: 2
+        x: 496
+        y: 789
+        width: 162
+        height: 172
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Taffy Bomb Spritesheet_3
+      rect:
+        serializedVersion: 2
+        x: 730
+        y: 789
+        width: 162
+        height: 173
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: Taffy Bomb Spritesheet_4
+      rect:
+        serializedVersion: 2
+        x: 47
+        y: 600
+        width: 162
+        height: 130
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Taffy Bomb Spritesheet_5
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 596
+        width: 177
+        height: 113
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Taffy Bomb Spritesheet_6
+      rect:
+        serializedVersion: 2
+        x: 484
+        y: 596
+        width: 176
+        height: 98
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Taffy Bomb Spritesheet_7
+      rect:
+        serializedVersion: 2
+        x: 700
+        y: 596
+        width: 229
+        height: 102
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Taffy Bomb Spritesheet_8
+      rect:
+        serializedVersion: 2
+        x: 47
+        y: 386
+        width: 191
+        height: 139
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: Taffy Bomb Spritesheet_10
+      rect:
+        serializedVersion: 2
+        x: 313
+        y: 387
+        width: 240
+        height: 138
+      alignment: 0
+      pivot: {x: .5, y: .5}
+  spritePackingTag: 
+  userData: 

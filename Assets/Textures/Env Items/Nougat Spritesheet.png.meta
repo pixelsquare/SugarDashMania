@@ -1,0 +1,112 @@
+fileFormatVersion: 2
+guid: d7dbb82cc3fc3ca489ec0cdff6943add
+TextureImporter:
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  seamlessCubemap: 0
+  textureFormat: -3
+  maxTextureSize: 4096
+  textureSettings:
+    filterMode: -1
+    aniso: 1
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings:
+  - buildTarget: iPhone
+    maxTextureSize: 1024
+    textureFormat: -2
+    compressionQuality: 50
+  spriteSheet:
+    sprites:
+    - name: Nougat Spritesheet_0
+      rect:
+        serializedVersion: 2
+        x: 42
+        y: 9
+        width: 181
+        height: 112
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Nougat Spritesheet_1
+      rect:
+        serializedVersion: 2
+        x: 263
+        y: 9
+        width: 181
+        height: 103
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Nougat Spritesheet_2
+      rect:
+        serializedVersion: 2
+        x: 485
+        y: 9
+        width: 181
+        height: 89
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Nougat Spritesheet_3
+      rect:
+        serializedVersion: 2
+        x: 742
+        y: 9
+        width: 156
+        height: 71
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Nougat Spritesheet_4
+      rect:
+        serializedVersion: 2
+        x: 978
+        y: 9
+        width: 90
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Nougat Spritesheet_5
+      rect:
+        serializedVersion: 2
+        x: 1078
+        y: 18
+        width: 30
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Nougat Spritesheet_6
+      rect:
+        serializedVersion: 2
+        x: 1233
+        y: 8
+        width: 45
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+  spritePackingTag: 
+  userData: 

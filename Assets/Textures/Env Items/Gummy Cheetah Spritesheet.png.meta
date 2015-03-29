@@ -1,0 +1,184 @@
+fileFormatVersion: 2
+guid: f1c22451c7b34cd488fb307819dc0252
+TextureImporter:
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  seamlessCubemap: 0
+  textureFormat: -3
+  maxTextureSize: 4096
+  textureSettings:
+    filterMode: -1
+    aniso: 1
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings:
+  - buildTarget: iPhone
+    maxTextureSize: 1024
+    textureFormat: -2
+    compressionQuality: 50
+  spriteSheet:
+    sprites:
+    - name: Gummy Cheetah Spritesheet_0
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 763
+        width: 278
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Gummy Cheetah Spritesheet_1
+      rect:
+        serializedVersion: 2
+        x: 349
+        y: 787
+        width: 283
+        height: 104
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Gummy Cheetah Spritesheet_2
+      rect:
+        serializedVersion: 2
+        x: 680
+        y: 768
+        width: 309
+        height: 123
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Gummy Cheetah Spritesheet_3
+      rect:
+        serializedVersion: 2
+        x: 1043
+        y: 794
+        width: 298
+        height: 89
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Gummy Cheetah Spritesheet_4
+      rect:
+        serializedVersion: 2
+        x: 42
+        y: 589
+        width: 282
+        height: 104
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Gummy Cheetah Spritesheet_5
+      rect:
+        serializedVersion: 2
+        x: 386
+        y: 586
+        width: 271
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Gummy Cheetah Spritesheet_6
+      rect:
+        serializedVersion: 2
+        x: 699
+        y: 601
+        width: 270
+        height: 95
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Gummy Cheetah Spritesheet_7
+      rect:
+        serializedVersion: 2
+        x: 1043
+        y: 601
+        width: 270
+        height: 97
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Gummy Cheetah Spritesheet_8
+      rect:
+        serializedVersion: 2
+        x: 42
+        y: 373
+        width: 280
+        height: 122
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Gummy Cheetah Spritesheet_9
+      rect:
+        serializedVersion: 2
+        x: 378
+        y: 394
+        width: 288
+        height: 101
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Gummy Cheetah Spritesheet_10
+      rect:
+        serializedVersion: 2
+        x: 730
+        y: 382
+        width: 302
+        height: 104
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Gummy Cheetah Spritesheet_11
+      rect:
+        serializedVersion: 2
+        x: 1055
+        y: 373
+        width: 301
+        height: 118
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Gummy Cheetah Spritesheet_12
+      rect:
+        serializedVersion: 2
+        x: 46
+        y: 177
+        width: 270
+        height: 111
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Gummy Cheetah Spritesheet_13
+      rect:
+        serializedVersion: 2
+        x: 378
+        y: 185
+        width: 273
+        height: 103
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Gummy Cheetah Spritesheet_14
+      rect:
+        serializedVersion: 2
+        x: 731
+        y: 191
+        width: 268
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+  spritePackingTag: 
+  userData: 

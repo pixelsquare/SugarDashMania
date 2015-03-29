@@ -1,0 +1,108 @@
+fileFormatVersion: 2
+guid: ab1a82128b2c67f4f98c5feb9c0b8bfd
+TextureImporter:
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  seamlessCubemap: 0
+  textureFormat: -3
+  maxTextureSize: 4096
+  textureSettings:
+    filterMode: -1
+    aniso: 1
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: Active_Settings Button_0
+      rect:
+        serializedVersion: 2
+        x: 54
+        y: 1627
+        width: 427
+        height: 256
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: Active_Settings Button_1
+      rect:
+        serializedVersion: 2
+        x: 765
+        y: 1637
+        width: 437
+        height: 244
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: Active_Settings Button_2
+      rect:
+        serializedVersion: 2
+        x: 1465
+        y: 1627
+        width: 464
+        height: 268
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: Active_Settings Button_3
+      rect:
+        serializedVersion: 2
+        x: 95
+        y: 992
+        width: 434
+        height: 264
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: Active_Settings Button_4
+      rect:
+        serializedVersion: 2
+        x: 759
+        y: 993
+        width: 541
+        height: 290
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: Active_Settings Button_5
+      rect:
+        serializedVersion: 2
+        x: 1499
+        y: 1034
+        width: 458
+        height: 268
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: Active_Settings Button_6
+      rect:
+        serializedVersion: 2
+        x: 817
+        y: 390
+        width: 439
+        height: 271
+      alignment: 0
+      pivot: {x: .5, y: .5}
+  spritePackingTag: 
+  userData: 

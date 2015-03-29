@@ -1,0 +1,121 @@
+fileFormatVersion: 2
+guid: fec0b90f7fe9f144fb9192971f097563
+TextureImporter:
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  seamlessCubemap: 0
+  textureFormat: -3
+  maxTextureSize: 4096
+  textureSettings:
+    filterMode: -1
+    aniso: 1
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings:
+  - buildTarget: iPhone
+    maxTextureSize: 1024
+    textureFormat: -2
+    compressionQuality: 50
+  spriteSheet:
+    sprites:
+    - name: Bubbly_Slip Blue_0
+      rect:
+        serializedVersion: 2
+        x: 728
+        y: 84
+        width: 338
+        height: 485
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Bubbly_Slip Blue_1
+      rect:
+        serializedVersion: 2
+        x: 1121
+        y: 86
+        width: 344
+        height: 480
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Bubbly_Slip Blue_2
+      rect:
+        serializedVersion: 2
+        x: 1527
+        y: 86
+        width: 335
+        height: 494
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Bubbly_Slip Blue_3
+      rect:
+        serializedVersion: 2
+        x: 1966
+        y: 84
+        width: 320
+        height: 515
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Bubbly_Slip Blue_4
+      rect:
+        serializedVersion: 2
+        x: 2329
+        y: 84
+        width: 340
+        height: 481
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Bubbly_Slip Blue_5
+      rect:
+        serializedVersion: 2
+        x: 2768
+        y: 84
+        width: 345
+        height: 475
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Bubbly_Slip Blue_6
+      rect:
+        serializedVersion: 2
+        x: 3227
+        y: 83
+        width: 332
+        height: 498
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Bubbly_Slip Blue_7
+      rect:
+        serializedVersion: 2
+        x: 3657
+        y: 81
+        width: 318
+        height: 510
+      alignment: 0
+      pivot: {x: 0, y: 0}
+  spritePackingTag: 
+  userData: 
