@@ -3,6 +3,6 @@
 
 * Game Engine: Unity3D
 
-* Language/s: C#
+* Game Engine: Unity3D
 
 * Description: A racing networking game for local area network.
