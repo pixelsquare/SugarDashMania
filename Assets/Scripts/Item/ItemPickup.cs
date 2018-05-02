@@ -18,7 +18,7 @@ public class ItemPickup : BaseItemEntity {
 		if (hitHeroThrowItem != null && hitHeroEntity.CurItem == ItemType.None) {
 			if (col.tag == "Player" && hitHeroThrowItem.CanPickItem) {
 				hit = col.transform;
-				Destroy(collider2D);
+				Destroy(GetComponent<Collider2D>());
 				StartCoroutine("PlaySoundAndRemove");
 			}
 		}
@@ -26,7 +26,7 @@ public class ItemPickup : BaseItemEntity {
 
 	protected override void CleanItem() {
 		if (Network.isServer && hit != null)
-			networkView.RPC("PlayerCollided", RPCMode.All, hit.networkView.viewID);
+			GetComponent<NetworkView>().RPC("PlayerCollided", RPCMode.All, hit.GetComponent<NetworkView>().viewID);
 		base.CleanItem();
 	}
 

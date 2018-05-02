@@ -16,8 +16,8 @@ public class JawbreakerBoulder : BaseEnvironmentEntity {
 	}
 
 	protected override void Start() {
-		rigidbody2D.AddTorque(torque);
-		rigidbody2D.AddForce(Vector3.right * -forwardForce);
+		GetComponent<Rigidbody2D>().AddTorque(torque);
+		GetComponent<Rigidbody2D>().AddForce(Vector3.right * -forwardForce);
 		StartCoroutine("UpdateJawbreaker");
 		base.Start();
 	}

@@ -19,13 +19,13 @@ public class Nougat : BaseItemEntity {
 	}
 
 	public void DestroyNougat() {
-		Destroy(collider2D);
+		Destroy(GetComponent<Collider2D>());
 		anim.SetTrigger("Activate");
 	}
 
 	protected override void OnTriggerEnter2D(Collider2D col) {
 		base.OnTriggerEnter2D(col);
-		if (col.tag == "Player" && !col.collider2D.isTrigger) {
+		if (col.tag == "Player" && !col.GetComponent<Collider2D>().isTrigger) {
 			DestroyNougat();
 		}
 	}

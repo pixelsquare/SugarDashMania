@@ -49,7 +49,7 @@ public class BaseItemEntity : MonoBehaviour {
 	private Vector3 newPos;
 
 	protected virtual void Awake() {
-		networkView.observed = this;
+		GetComponent<NetworkView>().observed = this;
 		networkManager = FindObjectOfType<NetworkManager>();
 		userInterface = FindObjectOfType<UserInterface>();
 		anim = GetComponent<Animator>();
@@ -74,7 +74,7 @@ public class BaseItemEntity : MonoBehaviour {
 	protected virtual void CleanItem() {
 		if (Network.isServer) {
 			Network.Destroy(gameObject);
-			Network.RemoveRPCs(gameObject.networkView.viewID);
+			Network.RemoveRPCs(gameObject.GetComponent<NetworkView>().viewID);
 			if (showIndicator)
 				CallIndicator();
 		}
@@ -97,7 +97,7 @@ public class BaseItemEntity : MonoBehaviour {
 
 	protected void AddScore(int score) {
 		if (Network.isServer && owner == Network.player) {
-			networkManager.networkView.RPC("AddScore", RPCMode.All, hitHeroEntity.Owner, score);
+			networkManager.GetComponent<NetworkView>().RPC("AddScore", RPCMode.All, hitHeroEntity.Owner, score);
 		}
 	}
 
@@ -106,7 +106,7 @@ public class BaseItemEntity : MonoBehaviour {
 		// call an RPC to everyone, to locate for the server
 		// to spawn the indicator
 		if (Network.isClient)
-			networkView.RPC("SpawnIndicator", RPCMode.All, Network.player);
+			GetComponent<NetworkView>().RPC("SpawnIndicator", RPCMode.All, Network.player);
 
 		// If the nougat is triggered by server machine
 		// Instantiate immediately

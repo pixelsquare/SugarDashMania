@@ -50,7 +50,7 @@ public class TagControl : MonoBehaviour {
 				allyTarget = FindTarget(TagTargetType.Ally);
 
 				if (allyTarget != null) {
-					networkView.RPC("SpawnAllyTag", RPCMode.All, Network.player, allyTarget.position, allyTarget.networkView.viewID, duration);
+					GetComponent<NetworkView>().RPC("SpawnAllyTag", RPCMode.All, Network.player, allyTarget.position, allyTarget.GetComponent<NetworkView>().viewID, duration);
 				}
 			}
 
@@ -58,7 +58,7 @@ public class TagControl : MonoBehaviour {
 				enemyTarget = FindTarget(TagTargetType.Enemy);
 
 				if (enemyTarget != null) {
-					networkView.RPC("SpawnEnemyTag", RPCMode.All, Network.player, enemyTarget.position, enemyTarget.networkView.viewID, duration);
+					GetComponent<NetworkView>().RPC("SpawnEnemyTag", RPCMode.All, Network.player, enemyTarget.position, enemyTarget.GetComponent<NetworkView>().viewID, duration);
 				}
 			}
 		}
@@ -133,7 +133,7 @@ public class TagControl : MonoBehaviour {
 
 			allyTag.GetComponent<Tag>().SetColor(allyTagColor);
 			allyTag.GetComponent<Tag>().Duration = duration;
-			allyTag.GetComponent<Tag>().networkView.RPC("SetOwner", RPCMode.All, sender);
+			allyTag.GetComponent<Tag>().GetComponent<NetworkView>().RPC("SetOwner", RPCMode.All, sender);
 
 			allyTarget = NetworkView.Find(allyId).gameObject.transform;
 			if (allyTarget != null) {
@@ -141,7 +141,7 @@ public class TagControl : MonoBehaviour {
 				allyTag.transform.localPosition = Vector3.zero;
 			}
 			
-			networkView.RPC("UpdateSpawnAllyTag", RPCMode.Others, allyTag.networkView.viewID, allyTarget.networkView.viewID, duration);
+			GetComponent<NetworkView>().RPC("UpdateSpawnAllyTag", RPCMode.Others, allyTag.GetComponent<NetworkView>().viewID, allyTarget.GetComponent<NetworkView>().viewID, duration);
 		}
 	}
 
@@ -167,7 +167,7 @@ public class TagControl : MonoBehaviour {
 
 			enemyTag.GetComponent<Tag>().SetColor(enemyTagColor);
 			enemyTag.GetComponent<Tag>().Duration = duration;
-			enemyTag.GetComponent<Tag>().networkView.RPC("SetOwner", RPCMode.All, sender);
+			enemyTag.GetComponent<Tag>().GetComponent<NetworkView>().RPC("SetOwner", RPCMode.All, sender);
 
 			enemyTarget = NetworkView.Find(enemyId).gameObject.transform;
 			if (enemyTarget != null) {
@@ -175,7 +175,7 @@ public class TagControl : MonoBehaviour {
 				enemyTag.transform.localPosition = Vector3.zero;
 			}
 
-			networkView.RPC("UpdateSpawnEnemyTag", RPCMode.Others, enemyTag.networkView.viewID, enemyTarget.networkView.viewID, duration);
+			GetComponent<NetworkView>().RPC("UpdateSpawnEnemyTag", RPCMode.Others, enemyTag.GetComponent<NetworkView>().viewID, enemyTarget.GetComponent<NetworkView>().viewID, duration);
 		}
 	}
 

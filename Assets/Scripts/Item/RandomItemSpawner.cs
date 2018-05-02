@@ -8,13 +8,13 @@ public class RandomItemSpawner : MonoBehaviour {
 	int randIndx = 0;
 
 	private void Awake() {
-		networkView.observed = this;
+		GetComponent<NetworkView>().observed = this;
 		randIndx = Random.Range(0, items.Length - 1);
 	}
 
 	private void Start() {
 		if (Network.isServer) {
-			networkView.RPC("SpawnItemPickup", RPCMode.All, randIndx);
+			GetComponent<NetworkView>().RPC("SpawnItemPickup", RPCMode.All, randIndx);
 			Network.Destroy(gameObject);
 		}
 	}

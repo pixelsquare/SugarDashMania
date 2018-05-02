@@ -10,11 +10,11 @@ public class TextAreaButton : BaseButtonEntity {
 		textAreaMesh = GetComponent<TextMesh>();
 		baseUserInterface = FindObjectOfType<BaseUIEntity>();
 
-		renderer.enabled = false;
+		GetComponent<Renderer>().enabled = false;
 	}
 
 	public void InitializeText(string info) {
-		renderer.enabled = true;
+		GetComponent<Renderer>().enabled = true;
 		textAreaMesh.text = info;
 		GameUtility.ChangeSortingLayerRecursively(transform, LayerManager.SortingLayerUiFront, LayerManager.SortingLayerUiFront);
 
@@ -33,8 +33,8 @@ public class TextAreaButton : BaseButtonEntity {
 	protected override IEnumerator AnimationRoutine(GameState state) {
 		yield return StartCoroutine(base.AnimationRoutine(state));
 		baseUserInterface.FindingServerUi.EnableTextInput = true;
-		Destroy(collider2D);
-		renderer.enabled = false;
+		Destroy(GetComponent<Collider2D>());
+		GetComponent<Renderer>().enabled = false;
 	}
 
 	//private void Awake() {

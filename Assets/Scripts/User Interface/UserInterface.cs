@@ -87,10 +87,10 @@ public class UserInterface : BaseUIEntity {
 		while (true) {
 			if (Scene == GameState.RoomLobby && !networkManager.Starting) {
 				if (focusedWindowID == 2) {
-					networkManager.networkView.RPC("ChangeTeam", RPCMode.AllBuffered, Network.player, (int)Team.Red);
+					networkManager.GetComponent<NetworkView>().RPC("ChangeTeam", RPCMode.AllBuffered, Network.player, (int)Team.Red);
 				}
 				else if (focusedWindowID == 3) {
-					networkManager.networkView.RPC("ChangeTeam", RPCMode.AllBuffered, Network.player, (int)Team.Green);
+					networkManager.GetComponent<NetworkView>().RPC("ChangeTeam", RPCMode.AllBuffered, Network.player, (int)Team.Green);
 				}
 			}
 
@@ -486,7 +486,7 @@ public class UserInterface : BaseUIEntity {
 				}
 
 				networkManager.CharType = (CharacterType)num;
-				networkManager.networkView.RPC("ChangeCharacterType", RPCMode.AllBuffered, Network.player, (int)networkManager.CharType);
+				networkManager.GetComponent<NetworkView>().RPC("ChangeCharacterType", RPCMode.AllBuffered, Network.player, (int)networkManager.CharType);
 			}
 			GUILayout.EndArea();
 
@@ -500,7 +500,7 @@ public class UserInterface : BaseUIEntity {
 					num2 = 0;
 				}
 				networkManager.CharType = (CharacterType)num2;
-				networkManager.networkView.RPC("ChangeCharacterType", RPCMode.AllBuffered, Network.player, (int)networkManager.CharType);
+				networkManager.GetComponent<NetworkView>().RPC("ChangeCharacterType", RPCMode.AllBuffered, Network.player, (int)networkManager.CharType);
 			}
 			GUILayout.EndArea();
 		}
@@ -529,7 +529,7 @@ public class UserInterface : BaseUIEntity {
 			string currentTime = "[" + System.DateTime.Now.Hour + ":" + System.DateTime.Now.Minute + ":" + System.DateTime.Now.Second + "] ";
 
 			if (inputString != string.Empty) {
-				networkManager.networkView.RPC("SendChatMessage", RPCMode.AllBuffered, currentTime + networkManager.PlayerName + ": " + inputString);
+				networkManager.GetComponent<NetworkView>().RPC("SendChatMessage", RPCMode.AllBuffered, currentTime + networkManager.PlayerName + ": " + inputString);
 				inputString = string.Empty;
 			}
 		}

@@ -56,7 +56,7 @@ public class CharacterThrow : MonoBehaviour {
 
 	public void Throw() {
 		if (canShoot) {
-			networkView.RPC("SpawnItemThrow", RPCMode.All, (int)heroEntity.CurItem);
+			GetComponent<NetworkView>().RPC("SpawnItemThrow", RPCMode.All, (int)heroEntity.CurItem);
 		}
 	}
 
@@ -117,7 +117,7 @@ public class CharacterThrow : MonoBehaviour {
 		if (Network.isServer) {
 			GameObject item = (GameObject)Network.Instantiate(throwItems[indx].gameObject, transform.position, Quaternion.identity, NetworkGroup.Item);
 			item.GetComponent<ItemThrow>().MoveDir = new Vector2(transform.localScale.x, 0f);
-			item.GetComponent<ItemThrow>().networkView.RPC("SetOwner", RPCMode.All, heroEntity.Owner);
+			item.GetComponent<ItemThrow>().GetComponent<NetworkView>().RPC("SetOwner", RPCMode.All, heroEntity.Owner);
 		}
 
 		heroEntity.CurItem = ItemType.None;

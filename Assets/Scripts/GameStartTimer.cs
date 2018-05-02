@@ -65,7 +65,7 @@ public class GameStartTimer : MonoBehaviour {
 	private void StartGame() {
 		if (Network.isServer) {
 			networkManager.GameStart = true;
-			networkManager.networkView.RPC("SetGameStart", RPCMode.All, networkManager.GameStart);
+			networkManager.GetComponent<NetworkView>().RPC("SetGameStart", RPCMode.All, networkManager.GameStart);
 		}
 	}
 

@@ -44,11 +44,11 @@ public class LevelScreen : MonoBehaviour {
 		if (anim.enabled != enable)
 			anim.enabled = enable;
 
-		if (loadingParticle != null && loadingParticle.renderer.enabled != enable)
-			loadingParticle.renderer.enabled = enable;
+		if (loadingParticle != null && loadingParticle.GetComponent<Renderer>().enabled != enable)
+			loadingParticle.GetComponent<Renderer>().enabled = enable;
 
-		if (loadingText != null && loadingText.renderer.enabled != enable)
-			loadingText.renderer.enabled = enable;
+		if (loadingText != null && loadingText.GetComponent<Renderer>().enabled != enable)
+			loadingText.GetComponent<Renderer>().enabled = enable;
 
 		if (loadingPivotAnim != null && loadingPivotAnim.enabled != enable)
 			loadingPivotAnim.enabled = enable;

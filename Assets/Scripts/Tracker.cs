@@ -85,8 +85,8 @@ public class Tracker : MonoBehaviour {
 	}
 
 	private void EnableRenderer( bool enable) {
-		renderer.enabled = enable;
-		trackerName.renderer.enabled = enable;
+		GetComponent<Renderer>().enabled = enable;
+		trackerName.GetComponent<Renderer>().enabled = enable;
 		icons[iconIndx].enabled = enable;
 	}
 

@@ -203,7 +203,7 @@ public class NetworkManager : MonoBehaviour {
 		userInterface = FindObjectOfType<UserInterface>();
 
 		levelScreen = FindObjectOfType<LevelScreen>();
-		defaultCamera = levelScreen.transform.root.camera;
+		defaultCamera = levelScreen.transform.root.GetComponent<Camera>();
 		loadingIndicator = levelScreen.LoadingIndicator;
 
 		//foreach (SpriteRenderer element in Resources.FindObjectsOfTypeAll(typeof(SpriteRenderer))) {
@@ -232,12 +232,12 @@ public class NetworkManager : MonoBehaviour {
 			/**
 			 *	Update all that I'm loaded
 			 **/
-			networkView.RPC("SetHasLoaded", RPCMode.All, Network.player, true);
+			GetComponent<NetworkView>().RPC("SetHasLoaded", RPCMode.All, Network.player, true);
 
 			/**
 			 *	Server Spawns the level and the characters
 			 **/
-			networkView.RPC("InitializeLevel", RPCMode.All, Network.player);
+			GetComponent<NetworkView>().RPC("InitializeLevel", RPCMode.All, Network.player);
 
 			/**
 			 *	Set local variables to ready to start
@@ -282,7 +282,7 @@ public class NetworkManager : MonoBehaviour {
 	}
 
 	private void OnPlayerDisconnected(NetworkPlayer player) {
-		networkView.RPC("RemovePlayerToList", RPCMode.AllBuffered, player);
+		GetComponent<NetworkView>().RPC("RemovePlayerToList", RPCMode.AllBuffered, player);
 	}
 
 	private void OnServerInitialized() {
@@ -294,17 +294,17 @@ public class NetworkManager : MonoBehaviour {
 
 		baseUiEntity.Scene = GameState.RoomLobby;
 
-		networkView.RPC("SendChatMessage", RPCMode.AllBuffered, serverInfo.PlayerName + " has connected.");
+		GetComponent<NetworkView>().RPC("SendChatMessage", RPCMode.AllBuffered, serverInfo.PlayerName + " has connected.");
 	}
 
 	private void OnConnectedToServer() {
 		PlayerInformation clientInfo = new PlayerInformation();
 		clientInfo.PlayerName = baseUiEntity.FindingServerUi.NameString;
 		clientInfo.PlayerID = Network.player;
-		networkView.RPC("AddPlayerToList", RPCMode.All, clientInfo.PlayerID, clientInfo.PlayerName);
+		GetComponent<NetworkView>().RPC("AddPlayerToList", RPCMode.All, clientInfo.PlayerID, clientInfo.PlayerName);
 
 		baseUiEntity.Scene = GameState.RoomLobby;
-		networkView.RPC("SendChatMessage", RPCMode.AllBuffered, clientInfo.PlayerName + " has connected.");
+		GetComponent<NetworkView>().RPC("SendChatMessage", RPCMode.AllBuffered, clientInfo.PlayerName + " has connected.");
 	}
 
 	public void ResetNetworkComponents() {
@@ -364,7 +364,7 @@ public class NetworkManager : MonoBehaviour {
 		gameTimer.transform.parent = playerHeroEntity.MyCamera.transform;
 
 		if (Network.isServer) {
-			networkView.RPC("ShowTimer", RPCMode.All);
+			GetComponent<NetworkView>().RPC("ShowTimer", RPCMode.All);
 		}
 
 		StopCoroutine("ReleaseMainCamera");
@@ -384,7 +384,7 @@ public class NetworkManager : MonoBehaviour {
 	public IEnumerator StartRoomLobbyTimer() {
 		if (!starting) {
 			starting = true;
-			networkView.RPC("SetStarting", RPCMode.All, starting);
+			GetComponent<NetworkView>().RPC("SetStarting", RPCMode.All, starting);
 		}
 		InvokeRepeating("PrintRoomLobbyTimer", 0.1f, 1.01f);
 		roomLobbyTimer++;
@@ -395,7 +395,7 @@ public class NetworkManager : MonoBehaviour {
 		}
 
 		CancelInvoke("PrintRoomLobbyTimer");
-		networkView.RPC("StartGame", RPCMode.All);
+		GetComponent<NetworkView>().RPC("StartGame", RPCMode.All);
 	}
 
 	public void ResetRoomLobbyTimer() {
@@ -409,8 +409,8 @@ public class NetworkManager : MonoBehaviour {
 	 **/
 
 	private void PrintRoomLobbyTimer() {
-		networkView.RPC("SendChatMessage", RPCMode.AllBuffered, "Game Starting in " + (int)roomLobbyTimer + " ...");
-		networkView.RPC("UpdateRoomLobbyTimer", RPCMode.Others, roomLobbyTimer);
+		GetComponent<NetworkView>().RPC("SendChatMessage", RPCMode.AllBuffered, "Game Starting in " + (int)roomLobbyTimer + " ...");
+		GetComponent<NetworkView>().RPC("UpdateRoomLobbyTimer", RPCMode.Others, roomLobbyTimer);
 	}
 
 	/**
@@ -429,7 +429,7 @@ public class NetworkManager : MonoBehaviour {
 		}
 
 		yield return new WaitForSeconds(3f);
-		networkView.RPC("UpdateLevelScreen", RPCMode.All);
+		GetComponent<NetworkView>().RPC("UpdateLevelScreen", RPCMode.All);
 		StopCoroutine("CheckLoadedPlayers");
 	}
 
@@ -466,7 +466,7 @@ public class NetworkManager : MonoBehaviour {
 			PlayerInformationList.Add(tmpInfo);
 
 			foreach (PlayerInformation element in PlayerInformationList)
-				networkView.RPC("UpdateClientPlayerList", RPCMode.Others, element.PlayerID, element.PlayerName, (int)element.CharType);
+				GetComponent<NetworkView>().RPC("UpdateClientPlayerList", RPCMode.Others, element.PlayerID, element.PlayerName, (int)element.CharType);
 		}
 	}
 
@@ -507,7 +507,7 @@ public class NetworkManager : MonoBehaviour {
 		foreach (PlayerInformation element in PlayerInformationList) {
 			if (element.PlayerID == player) {
 				Network.DestroyPlayerObjects(element.PlayerID);
-				Network.RemoveRPCs(element.Hero.networkView.viewID);
+				Network.RemoveRPCs(element.Hero.GetComponent<NetworkView>().viewID);
 				Network.RemoveRPCsInGroup(NetworkGroup.Player);
 				Network.Destroy(element.Hero);
 				PlayerInformationList.Remove(element);
@@ -518,7 +518,7 @@ public class NetworkManager : MonoBehaviour {
 					GreenTeamList.Remove(element);
 
 				if (Network.isServer)
-					networkView.RPC("SendChatMessage", RPCMode.AllBuffered, element.PlayerName + " has left the game.");
+					GetComponent<NetworkView>().RPC("SendChatMessage", RPCMode.AllBuffered, element.PlayerName + " has left the game.");
 
 				break;
 			}
@@ -532,13 +532,13 @@ public class NetworkManager : MonoBehaviour {
 			Application.LoadLevel("Level 1");
 			baseUiEntity.Scene = GameState.InGame;
 			hasStarted = true;
-			networkView.RPC("SetHasStarted", RPCMode.All, hasStarted);
+			GetComponent<NetworkView>().RPC("SetHasStarted", RPCMode.All, hasStarted);
 			defaultCamera.backgroundColor = Color.black;
 			defaultCamera.transform.position = cameraInitialPos;
 			defaultCamera.orthographicSize = 12f;
 
 			loadingScreenIndx = Random.Range(0, levelScreen.LoadingScreens.Length);
-			networkView.RPC("SetLoadingScreenIndx", RPCMode.All, loadingScreenIndx);
+			GetComponent<NetworkView>().RPC("SetLoadingScreenIndx", RPCMode.All, loadingScreenIndx);
 
 			/**
 			 *	Enable Fade In Effect
@@ -552,7 +552,7 @@ public class NetworkManager : MonoBehaviour {
 			 *	using an Ienumerator
 			 **/
 			StartCoroutine("CheckLoadedPlayers");
-			networkView.RPC("UpdateClientStartGame", RPCMode.Others);
+			GetComponent<NetworkView>().RPC("UpdateClientStartGame", RPCMode.Others);
 		}
 	}
 
@@ -590,7 +590,7 @@ public class NetworkManager : MonoBehaviour {
 					element.HeroEntity.Nameplate.text = element.PlayerName;
 					element.HeroEntity.name = element.CharType.ToString() + " (" + element.PlayerName + ")";
 
-					element.HeroEntity.networkView.RPC("Initialize", RPCMode.All, element.PlayerID, (int)element.PlayerTeam);
+					element.HeroEntity.GetComponent<NetworkView>().RPC("Initialize", RPCMode.All, element.PlayerID, (int)element.PlayerTeam);
 
 					if (element.PlayerID == Network.player) {
 						playerHero = element.HeroEntity.gameObject;
@@ -611,12 +611,12 @@ public class NetworkManager : MonoBehaviour {
 					element.Cam = playerHeroEntity.MyCamera;
 
 					if (element.PlayerInputBase) {
-						element.PlayerRB = playerHeroEntity.rigidbody2D;
+						element.PlayerRB = playerHeroEntity.GetComponent<Rigidbody2D>();
 					}
 				}
 			}
 
-			networkView.RPC("UpdateSpawnedPlayers", RPCMode.Others);
+			GetComponent<NetworkView>().RPC("UpdateSpawnedPlayers", RPCMode.Others);
 		}
 	}
 
@@ -655,12 +655,12 @@ public class NetworkManager : MonoBehaviour {
 				element.Cam = playerHeroEntity.MyCamera;
 
 				if (element.PlayerInputBase) {
-					element.PlayerRB = playerHeroEntity.rigidbody2D;
+					element.PlayerRB = playerHeroEntity.GetComponent<Rigidbody2D>();
 				}
 			}
 		}
 
-		networkView.RPC("ChangePlayerLayer", RPCMode.All);
+		GetComponent<NetworkView>().RPC("ChangePlayerLayer", RPCMode.All);
 	}
 
 	[RPC]
@@ -691,7 +691,7 @@ public class NetworkManager : MonoBehaviour {
 
 			GameUtility.ChangeLayerRecursively(playerHero.transform.root.transform, LayerManager.LayerPlayer);
 
-			networkView.RPC("UpdateChangePlayerLayer", RPCMode.Others);
+			GetComponent<NetworkView>().RPC("UpdateChangePlayerLayer", RPCMode.Others);
 		}
 	}
 
@@ -901,7 +901,7 @@ public class NetworkManager : MonoBehaviour {
 			}
 
 			PlayerInformationList.Sort(SortPlayerListByScore);
-			networkView.RPC("UpdateScore", RPCMode.Others, id, playerScore);
+			GetComponent<NetworkView>().RPC("UpdateScore", RPCMode.Others, id, playerScore);
 		}
 	}
 
@@ -927,14 +927,14 @@ public class NetworkManager : MonoBehaviour {
 			if (element.PlayerID == id) {
 				element.HasEnded = true;
 
-				networkView.RPC("RemovePlayerEnded", RPCMode.All, id);
+				GetComponent<NetworkView>().RPC("RemovePlayerEnded", RPCMode.All, id);
 
 				break;
 			}
 		}
 
-		if (Network.isServer && networkView.isMine)
-			networkView.RPC("RankBonus", RPCMode.All, id);
+		if (Network.isServer && GetComponent<NetworkView>().isMine)
+			GetComponent<NetworkView>().RPC("RankBonus", RPCMode.All, id);
 	}
 
 	[RPC]
@@ -950,13 +950,13 @@ public class NetworkManager : MonoBehaviour {
 			}
 			
 			if (playersEnded == 1)
-				networkView.RPC("AddScore", RPCMode.All, id, rankScore[0]);
+				GetComponent<NetworkView>().RPC("AddScore", RPCMode.All, id, rankScore[0]);
 			else if (playersEnded == 2)
-				networkView.RPC("AddScore", RPCMode.All, id, rankScore[1]);
+				GetComponent<NetworkView>().RPC("AddScore", RPCMode.All, id, rankScore[1]);
 			else if (playersEnded == 3)
-				networkView.RPC("AddScore", RPCMode.All, id, rankScore[2]);
+				GetComponent<NetworkView>().RPC("AddScore", RPCMode.All, id, rankScore[2]);
 			else if (playersEnded == 4)
-				networkView.RPC("AddScore", RPCMode.All, id, rankScore[3]);
+				GetComponent<NetworkView>().RPC("AddScore", RPCMode.All, id, rankScore[3]);
 
 			//networkView.RPC("SetPlayersEnded", RPCMode.Others, playersEnded);
 		}
@@ -986,7 +986,7 @@ public class NetworkManager : MonoBehaviour {
 				if (element.PlayerID == id) {
 					element.Hero.SetActive(false);
 					element.HeroEntity.transform.position = Vector3.zero;
-					Destroy(element.HeroEntity.rigidbody2D);
+					Destroy(element.HeroEntity.GetComponent<Rigidbody2D>());
 					//Network.RemoveRPCs(element.Hero.networkView.viewID);
 					//Network.RemoveRPCsInGroup(NetworkGroup.Player);
 					//Network.DestroyPlayerObjects(element.PlayerID);
@@ -997,8 +997,8 @@ public class NetworkManager : MonoBehaviour {
 				}
 			}
 
-			networkView.RPC("UpdatePlayerRemove", RPCMode.Others, id);
-			networkView.RPC("UpdateEndedPlayers", RPCMode.All);
+			GetComponent<NetworkView>().RPC("UpdatePlayerRemove", RPCMode.Others, id);
+			GetComponent<NetworkView>().RPC("UpdateEndedPlayers", RPCMode.All);
 		}
 	}
 
@@ -1008,7 +1008,7 @@ public class NetworkManager : MonoBehaviour {
 			if (element.PlayerID == id) {
 				element.Hero.SetActive(false);
 				element.HeroEntity.transform.position = Vector3.zero;
-				Destroy(element.HeroEntity.rigidbody2D);
+				Destroy(element.HeroEntity.GetComponent<Rigidbody2D>());
 				//Network.RemoveRPCs(element.Hero.networkView.viewID);
 				//Network.RemoveRPCsInGroup(NetworkGroup.Player);
 				//Network.DestroyPlayerObjects(element.PlayerID);
@@ -1067,8 +1067,8 @@ public class NetworkManager : MonoBehaviour {
 			else if (greenTeamScore > redTeamScore)
 				greenTeamWins = true;
 
-			networkView.RPC("SetWinnerTeam", RPCMode.All, greenTeamWins, redTeamWins);
-			networkView.RPC("SetGameEnd", RPCMode.All, true);
+			GetComponent<NetworkView>().RPC("SetWinnerTeam", RPCMode.All, greenTeamWins, redTeamWins);
+			GetComponent<NetworkView>().RPC("SetGameEnd", RPCMode.All, true);
 		}
 	}
 

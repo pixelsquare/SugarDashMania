@@ -20,7 +20,7 @@ public class RandomItemCrate : BaseItemEntity {
 		base.CleanItem();
 
 		if (Network.isClient)
-			networkView.RPC("SpawnItem", RPCMode.All);
+			GetComponent<NetworkView>().RPC("SpawnItem", RPCMode.All);
 
 		if (Network.isServer && randomItemDrop[randItemIndx] != null)
 			Network.Instantiate(randomItemDrop[randItemIndx].gameObject, transform.position, Quaternion.identity

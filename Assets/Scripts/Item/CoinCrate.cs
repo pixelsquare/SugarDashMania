@@ -18,7 +18,7 @@ public class CoinCrate : BaseItemEntity {
 		base.CleanItem();
 
 		if (Network.isClient)
-			networkView.RPC("SpawnCoin", RPCMode.All);
+			GetComponent<NetworkView>().RPC("SpawnCoin", RPCMode.All);
 
 		if (Network.isServer && coin != null)
 			Network.Instantiate(coin, transform.position, Quaternion.identity, NetworkGroup.Indicator);

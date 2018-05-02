@@ -161,7 +161,7 @@ public class BaseCharacterEntity : MonoBehaviour {
 		get { return curItem; }
 		set { 
 			curItem = value;
-			networkManager.networkView.RPC("SetCurrentItem", RPCMode.All, owner, (int)curItem);
+			networkManager.GetComponent<NetworkView>().RPC("SetCurrentItem", RPCMode.All, owner, (int)curItem);
 		}
 	}
 
@@ -228,7 +228,7 @@ public class BaseCharacterEntity : MonoBehaviour {
 	private Vector3 respawnPoint;
 
 	private void Awake() {
-		networkView.observed = this;
+		GetComponent<NetworkView>().observed = this;
 		Anim = GetComponent<Animator>();
 		networkManager = FindObjectOfType<NetworkManager>();
 		heroThrow = GetComponent<CharacterThrow>();
@@ -238,9 +238,9 @@ public class BaseCharacterEntity : MonoBehaviour {
 
 	private void Start() {
 		//transform.position = new Vector3(150f, 30f, 0f);
-		rigidbody2D.interpolation = RigidbodyInterpolation2D.Interpolate;
-		nameplate.renderer.sortingLayerName = LayerManager.SortingLayerUiBack;
-		nameplate.renderer.sortingOrder = 1;
+		GetComponent<Rigidbody2D>().interpolation = RigidbodyInterpolation2D.Interpolate;
+		nameplate.GetComponent<Renderer>().sortingLayerName = LayerManager.SortingLayerUiBack;
+		nameplate.GetComponent<Renderer>().sortingOrder = 1;
 		parentTransform = transform.root;
 		GameUtility.SetRendererEnableRecursively(overlay.transform, false);
 
@@ -276,7 +276,7 @@ public class BaseCharacterEntity : MonoBehaviour {
 	private void FixedUpdate() {
 		if (gameObject.activeInHierarchy) {
 			if (Network.player == owner && networkManager.GameStart && canMove) {
-				if (!overlay.renderer.enabled)
+				if (!overlay.GetComponent<Renderer>().enabled)
 					GameUtility.SetRendererEnableRecursively(overlay.transform, true);
 				//if (Input.GetKeyDown(KeyCode.L)) {
 				//    Pull push = new Pull();
@@ -289,9 +289,9 @@ public class BaseCharacterEntity : MonoBehaviour {
 					heroThrow.Throw();
 				}
 
-				if (rigidbody2D != null) {
+				if (GetComponent<Rigidbody2D>() != null) {
 					horizInput = Input.GetAxis("Horizontal") + JoystickManager.GetAxis(JSInput.LAxisX) + JoystickManager.GetAxis(JSInput.DpadAxisX);
-					networkView.RPC("SendUserInput", RPCMode.All, horizInput, (Vector3)transform.position, (Vector3)rigidbody2D.velocity);
+					GetComponent<NetworkView>().RPC("SendUserInput", RPCMode.All, horizInput, (Vector3)transform.position, (Vector3)GetComponent<Rigidbody2D>().velocity);
 				}
 
 
@@ -304,8 +304,8 @@ public class BaseCharacterEntity : MonoBehaviour {
 			}
 
 			if (GroundHit.collider != null && GroundHit.collider.tag == "Slippery") {
-				if (rigidbody2D != null && horizInput == 0f && rigidbody2D.velocity != Vector2.zero)
-					horizInput = Mathf.Sign(rigidbody2D.velocity.x);
+				if (GetComponent<Rigidbody2D>() != null && horizInput == 0f && GetComponent<Rigidbody2D>().velocity != Vector2.zero)
+					horizInput = Mathf.Sign(GetComponent<Rigidbody2D>().velocity.x);
 
 				Anim.SetFloat("Slip", Mathf.Abs(horizInput));
 				Anim.SetFloat("Speed", Mathf.Abs(0f));
@@ -318,16 +318,16 @@ public class BaseCharacterEntity : MonoBehaviour {
 				Anim.SetFloat("Speed", Mathf.Abs(horizInput));
 
 			if (!ObstructedSight) {
-				if (rigidbody2D != null && (horizInput * rigidbody2D.velocity.x) < speedCap)
-					rigidbody2D.AddForce(Vector3.right * horizInput * moveForce);
+				if (GetComponent<Rigidbody2D>() != null && (horizInput * GetComponent<Rigidbody2D>().velocity.x) < speedCap)
+					GetComponent<Rigidbody2D>().AddForce(Vector3.right * horizInput * moveForce);
 			}
 
-			if (rigidbody2D != null && didJump) {
+			if (GetComponent<Rigidbody2D>() != null && didJump) {
 				anim.SetTrigger("Jump");
 				if (transform.parent != parentTransform)
 					transform.parent = parentTransform;
 
-				rigidbody2D.AddForce(Vector2.up * jumpForce);
+				GetComponent<Rigidbody2D>().AddForce(Vector2.up * jumpForce);
 				didJump = false;
 			}
 
@@ -337,14 +337,14 @@ public class BaseCharacterEntity : MonoBehaviour {
 			if (Grounded)
 				canJump = true;
 
-			if (rigidbody2D != null && Mathf.Abs(rigidbody2D.velocity.y) > jumpCap)
+			if (GetComponent<Rigidbody2D>() != null && Mathf.Abs(GetComponent<Rigidbody2D>().velocity.y) > jumpCap)
 				canJump = false;
 
-			if (rigidbody2D != null && Mathf.Abs(rigidbody2D.velocity.x) > speedCap)
-				rigidbody2D.velocity = new Vector2(Mathf.Sign(rigidbody2D.velocity.x) * speedCap, rigidbody2D.velocity.y);
+			if (GetComponent<Rigidbody2D>() != null && Mathf.Abs(GetComponent<Rigidbody2D>().velocity.x) > speedCap)
+				GetComponent<Rigidbody2D>().velocity = new Vector2(Mathf.Sign(GetComponent<Rigidbody2D>().velocity.x) * speedCap, GetComponent<Rigidbody2D>().velocity.y);
 
-			if (rigidbody2D != null)
-				rigidbody2D.AddForce(Physics2D.gravity * (charPhysics.GravityModifier - 1));
+			if (GetComponent<Rigidbody2D>() != null)
+				GetComponent<Rigidbody2D>().AddForce(Physics2D.gravity * (charPhysics.GravityModifier - 1));
 
 
 			if (horizInput < 0f && isFacingRight)
@@ -423,22 +423,22 @@ public class BaseCharacterEntity : MonoBehaviour {
 		}
 
 		if (col.tag == "DeathTrigger")
-			networkView.RPC("PlayerRespawn", RPCMode.All);
+			GetComponent<NetworkView>().RPC("PlayerRespawn", RPCMode.All);
 
 		if (col.transform.tag == "Respawn" && respawnPoint != col.transform.position)
-			networkView.RPC("UpdateRespawnPoint", RPCMode.All, col.transform.position);
+			GetComponent<NetworkView>().RPC("UpdateRespawnPoint", RPCMode.All, col.transform.position);
 
 		if (col.transform.tag == "Finish") {
 			if (!hasEnded) {
 				if (Network.isServer) {
 					networkManager.PlayersEnded++;
-					networkView.RPC("SetPlayersEnded", RPCMode.All, networkManager.PlayersEnded);
+					GetComponent<NetworkView>().RPC("SetPlayersEnded", RPCMode.All, networkManager.PlayersEnded);
 				}
 
 				hasEnded = true;
-				networkView.RPC("UpdateHasEnded", RPCMode.All, hasEnded);
+				GetComponent<NetworkView>().RPC("UpdateHasEnded", RPCMode.All, hasEnded);
 			}
-			networkManager.networkView.RPC("EndPlayer", RPCMode.All, Owner);
+			networkManager.GetComponent<NetworkView>().RPC("EndPlayer", RPCMode.All, Owner);
 		}
 	}
 
@@ -450,13 +450,13 @@ public class BaseCharacterEntity : MonoBehaviour {
 		float rotationTime = 0f;
 		Vector3 origRotation = mainTexture.transform.eulerAngles;
 
-		networkView.RPC("InitLollipop", RPCMode.All);
+		GetComponent<NetworkView>().RPC("InitLollipop", RPCMode.All);
 		while (waypointIndx < lollipop.Waypoints.Length) {
 			transform.position = Vector3.SmoothDamp(transform.position, lollipop.Waypoints[waypointIndx].position, ref vel, 0.2f);
 
 			rotationTime += Time.deltaTime;
 			mainTexture.transform.eulerAngles = Vector3.Lerp(origRotation, new Vector3(0f, 0f, 360f), Mathf.Repeat(rotationTime, 1f) / 1f);
-			networkView.RPC("SendUserStar", RPCMode.All, transform.position, mainTexture.transform.eulerAngles);
+			GetComponent<NetworkView>().RPC("SendUserStar", RPCMode.All, transform.position, mainTexture.transform.eulerAngles);
 
 			if (Vector3.Distance(transform.position, lollipop.Waypoints[waypointIndx].position) < 1f)
 				waypointIndx++;
@@ -465,8 +465,8 @@ public class BaseCharacterEntity : MonoBehaviour {
 		}
 
 		mainTexture.transform.eulerAngles = origRotation;
-		networkView.RPC("SendUserStar", RPCMode.All, transform.position, mainTexture.transform.eulerAngles);
-		networkView.RPC("DisableLollipop", RPCMode.All);
+		GetComponent<NetworkView>().RPC("SendUserStar", RPCMode.All, transform.position, mainTexture.transform.eulerAngles);
+		GetComponent<NetworkView>().RPC("DisableLollipop", RPCMode.All);
 		//networkView.RPC("UpdateParallax", RPCMode.All, owner);
 
 		canMove = true;
@@ -477,7 +477,7 @@ public class BaseCharacterEntity : MonoBehaviour {
 		canMove = false;
 		dead = true;
 
-		networkView.RPC("InitRespawn", RPCMode.All);
+		GetComponent<NetworkView>().RPC("InitRespawn", RPCMode.All);
 
 		//GameUtility.SetRendererEnableRecursively(transform, false);
 		myCamera.GetComponent<CameraFollow>().Target = null;
@@ -486,7 +486,7 @@ public class BaseCharacterEntity : MonoBehaviour {
 		//GameUtility.SetRendererEnableRecursively(transform, true);
 		myCamera.GetComponent<CameraFollow>().Target = transform;
 
-		networkView.RPC("DisableRespawn", RPCMode.All);
+		GetComponent<NetworkView>().RPC("DisableRespawn", RPCMode.All);
 
 		dead = false;
 		canMove = true;
@@ -505,7 +505,7 @@ public class BaseCharacterEntity : MonoBehaviour {
 				element.Cam = myCamera;
 
 				if (element.PlayerInputBase) {
-					element.PlayerRB = networkManager.PlayerHeroEntity.rigidbody2D;
+					element.PlayerRB = networkManager.PlayerHeroEntity.GetComponent<Rigidbody2D>();
 				}
 			}
 		}
@@ -515,7 +515,7 @@ public class BaseCharacterEntity : MonoBehaviour {
 	private void InitRespawn() {
 		canMove = false;
 		dead = true;
-		Destroy(rigidbody2D);
+		Destroy(GetComponent<Rigidbody2D>());
 
 		anim.enabled = false;
 		mainTexture.enabled = false;
@@ -536,17 +536,17 @@ public class BaseCharacterEntity : MonoBehaviour {
 		nameplate.gameObject.SetActive(true);
 
 		gameObject.AddComponent<Rigidbody2D>();
-		rigidbody2D.drag = 1;
-		rigidbody2D.fixedAngle = true;
-		rigidbody2D.interpolation = RigidbodyInterpolation2D.Interpolate;
+		GetComponent<Rigidbody2D>().drag = 1;
+		GetComponent<Rigidbody2D>().fixedAngle = true;
+		GetComponent<Rigidbody2D>().interpolation = RigidbodyInterpolation2D.Interpolate;
 
-		networkView.RPC("UpdateParallax", RPCMode.All, owner);
+		GetComponent<NetworkView>().RPC("UpdateParallax", RPCMode.All, owner);
 	}
 
 	[RPC]
 	private void InitLollipop() {
 		canMove = false;
-		Destroy(rigidbody2D);
+		Destroy(GetComponent<Rigidbody2D>());
 
 		starParticle.enableEmission = true;
 		starParticle.Play();
@@ -566,11 +566,11 @@ public class BaseCharacterEntity : MonoBehaviour {
 		silhouette.sprite = defaultTexture;
 
 		gameObject.AddComponent<Rigidbody2D>();
-		rigidbody2D.drag = 1;
-		rigidbody2D.fixedAngle = true;
-		rigidbody2D.interpolation = RigidbodyInterpolation2D.Interpolate;
+		GetComponent<Rigidbody2D>().drag = 1;
+		GetComponent<Rigidbody2D>().fixedAngle = true;
+		GetComponent<Rigidbody2D>().interpolation = RigidbodyInterpolation2D.Interpolate;
 
-		networkView.RPC("UpdateParallax", RPCMode.All, owner);
+		GetComponent<NetworkView>().RPC("UpdateParallax", RPCMode.All, owner);
 	}
 
 	[RPC]
@@ -601,9 +601,9 @@ public class BaseCharacterEntity : MonoBehaviour {
 		if (Network.isServer) {
 			horizInput = horiz;
 			transform.position = pos;
-			rigidbody2D.velocity = vel;
+			GetComponent<Rigidbody2D>().velocity = vel;
 
-			networkView.RPC("UpdateUserInput", RPCMode.Others, horiz, pos, vel);
+			GetComponent<NetworkView>().RPC("UpdateUserInput", RPCMode.Others, horiz, pos, vel);
 		}
 	}
 
@@ -612,7 +612,7 @@ public class BaseCharacterEntity : MonoBehaviour {
 		if (Network.player != owner) {
 			horizInput = horiz;
 			transform.position = pos;
-			rigidbody2D.velocity = vel;
+			GetComponent<Rigidbody2D>().velocity = vel;
 		}
 	}
 

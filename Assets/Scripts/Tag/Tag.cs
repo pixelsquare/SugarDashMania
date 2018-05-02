@@ -28,7 +28,7 @@ public class Tag : MonoBehaviour {
 	private NetworkManager networkManager;
 
 	private void Awake() {
-		networkView.observed = this;
+		GetComponent<NetworkView>().observed = this;
 		anim = GetComponent<Animator>();
 		networkManager = FindObjectOfType<NetworkManager>();
 		audioSource = GetComponent<AudioSource>();
@@ -54,7 +54,7 @@ public class Tag : MonoBehaviour {
 
 		if (!outOfCameraBounds && viewport.x < 0f || viewport.x > 1f || viewport.y < 0f || viewport.y > 1f) {
 			StopCoroutine("TagUpdate");
-			networkView.RPC("RemoveTag", RPCMode.All);
+			GetComponent<NetworkView>().RPC("RemoveTag", RPCMode.All);
 			outOfCameraBounds = true;
 		}
 	}
@@ -65,7 +65,7 @@ public class Tag : MonoBehaviour {
 			yield return null;
 		}
 
-		networkView.RPC("RemoveTag", RPCMode.All);
+		GetComponent<NetworkView>().RPC("RemoveTag", RPCMode.All);
 	}
 
 	private IEnumerator TargetLost() {
@@ -82,7 +82,7 @@ public class Tag : MonoBehaviour {
 
 		yield return new WaitForSeconds(audioSource.clip.length);
 
-		networkView.RPC("RemoveObj", RPCMode.All);
+		GetComponent<NetworkView>().RPC("RemoveObj", RPCMode.All);
 	}
 
 	public void SetColor(Color col) {
@@ -98,9 +98,9 @@ public class Tag : MonoBehaviour {
 
 	[RPC]
 	private void RemoveObj() {
-		if (NetworkView.Find(networkView.viewID) != null) {
+		if (NetworkView.Find(GetComponent<NetworkView>().viewID) != null) {
 			if (Network.isServer) {
-				Network.Destroy(networkView.viewID);
+				Network.Destroy(GetComponent<NetworkView>().viewID);
 				Network.RemoveRPCsInGroup(NetworkGroup.PlayerTag);
 			}
 		}

@@ -40,7 +40,7 @@ public class CavityOverlay : MonoBehaviour {
 				overlayBase.position = overlayMain.position;
 			}
 
-			overlayBase.renderer.enabled = false;
+			overlayBase.GetComponent<Renderer>().enabled = false;
 			overlayBase.parent = transform;
 		}
 

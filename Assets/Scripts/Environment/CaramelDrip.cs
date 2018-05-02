@@ -13,8 +13,8 @@ public class CaramelDrip : BaseEnvironmentEntity {
 	private void OnTriggerEnter2D(Collider2D col) {
 		if (col.tag == "Pond") {
 			anim.SetTrigger("Dissolve");
-			rigidbody2D.gravityScale = 0f;
-			rigidbody2D.velocity = Vector2.zero;
+			GetComponent<Rigidbody2D>().gravityScale = 0f;
+			GetComponent<Rigidbody2D>().velocity = Vector2.zero;
 			//if (Mathf.Abs(rigidbody2D.velocity.y) > 0)
 			//    rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, Mathf.Sign(rigidbody2D.velocity.y) * 0.01f);
 		}

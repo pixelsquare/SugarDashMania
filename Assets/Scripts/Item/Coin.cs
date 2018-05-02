@@ -21,13 +21,13 @@ public class Coin : BaseItemEntity {
 	}
 
 	public void DestroyCoin() {
-		Destroy(collider2D);
+		Destroy(GetComponent<Collider2D>());
 		anim.SetTrigger("Remove");
 	}
 
 	protected override void OnTriggerEnter2D(Collider2D col) {
 		base.OnTriggerEnter2D(col);
-		if (col.tag == "Player" && triggerOnce && !col.collider2D.isTrigger) {
+		if (col.tag == "Player" && triggerOnce && !col.GetComponent<Collider2D>().isTrigger) {
 			DestroyCoin();
 			triggerOnce = false;
 		}

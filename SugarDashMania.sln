@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2017
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SugarDashMania", "SugarDashMania.csproj", "{60FFEE2C-DDBB-1D04-30D4-BDA6C6CBE5EA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SugarDashMania.Plugins", "SugarDashMania.Plugins.csproj", "{AD411C8B-B018-DCE4-C053-2B61FFAC15EA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{60FFEE2C-DDBB-1D04-30D4-BDA6C6CBE5EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{60FFEE2C-DDBB-1D04-30D4-BDA6C6CBE5EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{60FFEE2C-DDBB-1D04-30D4-BDA6C6CBE5EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{60FFEE2C-DDBB-1D04-30D4-BDA6C6CBE5EA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AD411C8B-B018-DCE4-C053-2B61FFAC15EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AD411C8B-B018-DCE4-C053-2B61FFAC15EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AD411C8B-B018-DCE4-C053-2B61FFAC15EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AD411C8B-B018-DCE4-C053-2B61FFAC15EA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

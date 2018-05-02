@@ -12,6 +12,6 @@ public class ReadyButton : BaseButtonEntity {
 		yield return StartCoroutine(base.AnimationRoutine(state));
 		//baseUI.Scene = state;
 		networkManager.IsReady = !networkManager.IsReady;
-		networkManager.networkView.RPC("SetReady", RPCMode.AllBuffered, Network.player, networkManager.IsReady);
+		networkManager.GetComponent<NetworkView>().RPC("SetReady", RPCMode.AllBuffered, Network.player, networkManager.IsReady);
 	}
 }

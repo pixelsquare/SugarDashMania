@@ -58,12 +58,12 @@ public class ItemThrow : BaseItemEntity {
 
 	protected override void Start() {
 		base.Start();
-		newVel = rigidbody2D.velocity;
+		newVel = GetComponent<Rigidbody2D>().velocity;
 		StartCoroutine("UpdateItem");
 	}
 
 	protected override void CleanItem() {
-		networkView.RPC("ApplyEffects", RPCMode.All);
+		GetComponent<NetworkView>().RPC("ApplyEffects", RPCMode.All);
 		base.CleanItem();
 	}
 
@@ -73,8 +73,8 @@ public class ItemThrow : BaseItemEntity {
 
 	private IEnumerator UpdateItem() {
 		float tmpDuration = duration;
-		rigidbody2D.velocity = new Vector2(moveDir.x * speed, 0f);
-		rigidbody2D.AddTorque(torque);
+		GetComponent<Rigidbody2D>().velocity = new Vector2(moveDir.x * speed, 0f);
+		GetComponent<Rigidbody2D>().AddTorque(torque);
 
 		while (tmpDuration > 0f) {
 			tmpDuration -= Time.deltaTime;
@@ -88,12 +88,12 @@ public class ItemThrow : BaseItemEntity {
 
 	protected override void OnSerializeNetworkView(BitStream stream, NetworkMessageInfo info) {
 		if (stream.isWriting) {
-			Vector3 tmpVel = rigidbody2D.velocity;
+			Vector3 tmpVel = GetComponent<Rigidbody2D>().velocity;
 			stream.Serialize(ref tmpVel);
 		}
 		else {
 			stream.Serialize(ref newVel);
-			rigidbody2D.velocity = newVel;
+			GetComponent<Rigidbody2D>().velocity = newVel;
 		}
 	}
 

@@ -25,18 +25,18 @@ public class CameraMove : MonoBehaviour {
 
 	private void Awake() {
 		networkManager = FindObjectOfType<NetworkManager>();
-		spectatingText.renderer.sortingLayerName = LayerManager.SortingLayerUiFront;
-		spectatingText.renderer.sortingOrder = 1;
+		spectatingText.GetComponent<Renderer>().sortingLayerName = LayerManager.SortingLayerUiFront;
+		spectatingText.GetComponent<Renderer>().sortingOrder = 1;
 		enabled = false;
 	}
 
 	public void OnEnable() {
-		spectatingText.renderer.enabled = true;
+		spectatingText.GetComponent<Renderer>().enabled = true;
 		spectatingHover.enabled = true;
 	}
 
 	public void OnDisable() {
-		spectatingText.renderer.enabled = false;
+		spectatingText.GetComponent<Renderer>().enabled = false;
 		spectatingHover.enabled = false;
 	}
 

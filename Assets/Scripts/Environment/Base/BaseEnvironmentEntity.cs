@@ -15,7 +15,7 @@ public class BaseEnvironmentEntity : MonoBehaviour {
 	protected NetworkManager networkManager;
 
 	protected virtual void Awake() {
-		networkView.observed = this;
+		GetComponent<NetworkView>().observed = this;
 		anim = GetComponent<Animator>();
 		networkManager = FindObjectOfType<NetworkManager>();
 	}
@@ -26,7 +26,7 @@ public class BaseEnvironmentEntity : MonoBehaviour {
 
 	protected virtual void RemoveItem() {
 		if (Network.isServer) {
-			Network.Destroy(networkView.viewID);
+			Network.Destroy(GetComponent<NetworkView>().viewID);
 
 			if ((int)networkGroup > 0) {
 				Network.RemoveRPCsInGroup((int)networkGroup);
@@ -35,7 +35,7 @@ public class BaseEnvironmentEntity : MonoBehaviour {
 	}
 
 	private void Remove() {
-		Network.Destroy(networkView.viewID);
+		Network.Destroy(GetComponent<NetworkView>().viewID);
 
 		if ((int)networkGroup > 0) {
 			Network.RemoveRPCsInGroup((int)networkGroup);
@@ -43,12 +43,12 @@ public class BaseEnvironmentEntity : MonoBehaviour {
 	}
 
 	private void DestroyCollider() {
-		Destroy(collider2D);
+		Destroy(GetComponent<Collider2D>());
 	}
 
 	protected void AddScore(int score) {
 		if (Network.isServer) {
-			networkManager.networkView.RPC("AddScore", RPCMode.All, hitId, score);
+			networkManager.GetComponent<NetworkView>().RPC("AddScore", RPCMode.All, hitId, score);
 		}
 	}
 

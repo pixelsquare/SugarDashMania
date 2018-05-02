@@ -20,7 +20,7 @@ public class StartButton : BaseButtonEntity {
 		yield return StartCoroutine(base.AnimationRoutine(state));
 		//baseUI.Scene = state;
 		networkManager.IsReady = !networkManager.IsReady;
-		networkManager.networkView.RPC("SetReady", RPCMode.AllBuffered, Network.player, networkManager.IsReady);
+		networkManager.GetComponent<NetworkView>().RPC("SetReady", RPCMode.AllBuffered, Network.player, networkManager.IsReady);
 
 		playerCharacters = 0;
 		foreach (PlayerInformation element in networkManager.PlayerInformationList) {
@@ -34,13 +34,13 @@ public class StartButton : BaseButtonEntity {
 
 		foreach (PlayerInformation element in networkManager.PlayerInformationList) {
 			if(element.CharType != CharacterType.Bubbly)
-				networkManager.networkView.RPC("SendChatMessage", RPCMode.All, "[SERVER] Game could not be started!");
+				networkManager.GetComponent<NetworkView>().RPC("SendChatMessage", RPCMode.All, "[SERVER] Game could not be started!");
 		}
 
 		if (playerCharacters != 0)
 			yield break;
 
-		networkManager.networkView.RPC("SetAllPlayersReady", RPCMode.AllBuffered);
+		networkManager.GetComponent<NetworkView>().RPC("SetAllPlayersReady", RPCMode.AllBuffered);
 
 		networkManager.StartCoroutine(networkManager.StartRoomLobbyTimer());
 	}

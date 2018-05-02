@@ -33,7 +33,7 @@ public class GameUtility : MonoBehaviour {
 	}
 
 	public static void ChangeSortingLayerRecursively(Transform root, string layer) {
-		Renderer rend = root.renderer;
+		Renderer rend = root.GetComponent<Renderer>();
 
 		foreach (Transform element in root) {
 			rend = element.GetComponent<Renderer>();
@@ -48,7 +48,7 @@ public class GameUtility : MonoBehaviour {
 	}
 
 	public static void ChangeSortingLayerRecursively(Transform root, string layer, string layerExemption) {
-		Renderer rend = root.renderer;
+		Renderer rend = root.GetComponent<Renderer>();
 
 		foreach (Transform element in root) {
 			rend = element.GetComponent<Renderer>();
@@ -92,14 +92,14 @@ public class GameUtility : MonoBehaviour {
 	}
 
 	public static void SetRendererEnableRecursively(Transform root, bool active) {
-		Renderer rend = root.renderer;
+		Renderer rend = root.GetComponent<Renderer>();
 		if (rend != null && rend.enabled != active)
 			rend.enabled = active;
 
 		foreach (Transform element in root) {
-			rend = element.renderer;
+			rend = element.GetComponent<Renderer>();
 			if (rend != null && rend.enabled != active)
-				element.renderer.enabled = active;
+				element.GetComponent<Renderer>().enabled = active;
 
 			SetRendererEnableRecursively(element, active);
 		}

@@ -64,7 +64,7 @@ public class CharacterEffects : MonoBehaviour {
 		origJumpCap = heroEntity.JumpCap;
 		origGravityModifer = heroEntity.CharPhysics.GravityModifier;
 
-		origDrag = heroEntity.rigidbody2D.drag;
+		origDrag = heroEntity.GetComponent<Rigidbody2D>().drag;
 		//origGravityScale = heroEntity.rigidbody2D.gravityScale;
 	}
 
@@ -124,7 +124,7 @@ public class CharacterEffects : MonoBehaviour {
 
 		heroEntity.CharPhysics.GravityModifier = gravityMod;
 		//heroEntity.rigidbody2D.gravityScale = 0f;
-		heroEntity.rigidbody2D.drag = 0f;
+		heroEntity.GetComponent<Rigidbody2D>().drag = 0f;
 		heroEntity.Anim.speed = 5f;
 		while (slideDuration > 0f) {
 			slideDuration -= Time.deltaTime;
@@ -140,7 +140,7 @@ public class CharacterEffects : MonoBehaviour {
 
 		heroEntity.CharPhysics.GravityModifier = origGravityModifer;
 		//heroEntity.rigidbody2D.gravityScale = origGravityScale;
-		heroEntity.rigidbody2D.drag = origDrag;
+		heroEntity.GetComponent<Rigidbody2D>().drag = origDrag;
 		heroEntity.Anim.speed = 1f;
 		Sliding = false;
 
@@ -231,7 +231,7 @@ public class CharacterEffects : MonoBehaviour {
 	private IEnumerator PushRoutine(Push push) {
 		Pushed = true;
 		heroEntity.CharPhysics.GravityModifier = 0f;
-		rigidbody2D.AddForceAtPosition(push.PushVector * push.Force, transform.position);
+		GetComponent<Rigidbody2D>().AddForceAtPosition(push.PushVector * push.Force, transform.position);
 		yield return new WaitForSeconds(0.1f);
 		heroEntity.CharPhysics.GravityModifier = origGravityModifer;
 		Pushed = false;
@@ -247,7 +247,7 @@ public class CharacterEffects : MonoBehaviour {
 	private IEnumerator PullRoutine(Pull pull) {
 		Pulled = true;
 		heroEntity.CharPhysics.GravityModifier = 0f;
-		rigidbody2D.AddForceAtPosition(new Vector2(-pull.PullVector.x, pull.PullVector.y) * pull.Force, transform.position);
+		GetComponent<Rigidbody2D>().AddForceAtPosition(new Vector2(-pull.PullVector.x, pull.PullVector.y) * pull.Force, transform.position);
 		yield return new WaitForSeconds(0.1f);
 		heroEntity.CharPhysics.GravityModifier = origGravityModifer;
 		Pulled = false;
@@ -256,8 +256,8 @@ public class CharacterEffects : MonoBehaviour {
 	public void ResetSlide() {
 		heroEntity.CharPhysics.GravityModifier = origGravityModifer;
 		//heroEntity.rigidbody2D.gravityScale = origGravityScale;
-		if (heroEntity.rigidbody2D != null)
-			heroEntity.rigidbody2D.drag = origDrag;
+		if (heroEntity.GetComponent<Rigidbody2D>() != null)
+			heroEntity.GetComponent<Rigidbody2D>().drag = origDrag;
 		heroEntity.Anim.speed = 1f;
 	}
 }

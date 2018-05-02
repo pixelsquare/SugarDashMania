@@ -23,7 +23,7 @@ public class Spawner : MonoBehaviour {
 	private BoxCollider2D boxCol;
 
 	private void Awake() {
-		networkView.observed = this;
+		GetComponent<NetworkView>().observed = this;
 		//if (!networkView.isMine)
 		//    Destroy(gameObject);
 
@@ -54,7 +54,7 @@ public class Spawner : MonoBehaviour {
 		GameObject tmpObj = (GameObject)Network.Instantiate(obj, randomPos, Quaternion.identity, (int)networkGroup);
 		tmpObj.transform.parent = holder.transform;
 
-		networkView.RPC("UpdateSpawnerStorage", RPCMode.Others, tmpObj.networkView.viewID, holder.networkView.viewID);
+		GetComponent<NetworkView>().RPC("UpdateSpawnerStorage", RPCMode.Others, tmpObj.GetComponent<NetworkView>().viewID, holder.GetComponent<NetworkView>().viewID);
 		StopCoroutine("UpdateSpawner");
 		StartCoroutine("UpdateSpawner");
 	}

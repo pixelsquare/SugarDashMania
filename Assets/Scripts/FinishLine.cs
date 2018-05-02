@@ -13,7 +13,7 @@ public class FinishLine : MonoBehaviour {
 		BaseCharacterEntity heroEntity = col.GetComponent<BaseCharacterEntity>();
 
 		if (col.tag == "Player") {
-			networkManager.networkView.RPC("EndPlayer", RPCMode.All, heroEntity.Owner);
+			networkManager.GetComponent<NetworkView>().RPC("EndPlayer", RPCMode.All, heroEntity.Owner);
 		}
 	}
 }

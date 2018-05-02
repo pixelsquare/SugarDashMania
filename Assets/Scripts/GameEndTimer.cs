@@ -33,21 +33,21 @@ public class GameEndTimer : MonoBehaviour {
 		GameUtility.ChangeSortingLayerRecursively(countMesh.transform, LayerManager.SortingLayerCharacterBack);
 		GameUtility.ChangeSortingLayerRecursively(endMesh.transform, LayerManager.SortingLayerCharacterBack);
 
-		countMesh.renderer.sortingOrder = 1;
-		endMesh.renderer.sortingOrder = 1;
+		countMesh.GetComponent<Renderer>().sortingOrder = 1;
+		endMesh.GetComponent<Renderer>().sortingOrder = 1;
 
 		curTime = maxTime;
-		countMesh.renderer.enabled = false;
-		endMesh.renderer.enabled = false;
-		hover.renderer.enabled = false;
+		countMesh.GetComponent<Renderer>().enabled = false;
+		endMesh.GetComponent<Renderer>().enabled = false;
+		hover.GetComponent<Renderer>().enabled = false;
 	}
 
 	public void EnableTimer() {
 		if (Network.player == networkManager.PlayerHeroEntity.Owner) {
 			curTime = maxTime;
-			countMesh.renderer.enabled = true;
-			endMesh.renderer.enabled = true;
-			hover.renderer.enabled = true;
+			countMesh.GetComponent<Renderer>().enabled = true;
+			endMesh.GetComponent<Renderer>().enabled = true;
+			hover.GetComponent<Renderer>().enabled = true;
 			StopCoroutine("UpdateTimer");
 			StartCoroutine("UpdateTimer");
 		}
@@ -60,7 +60,7 @@ public class GameEndTimer : MonoBehaviour {
 			yield return null;
 		}
 
-		networkManager.networkView.RPC("EndPlayer", RPCMode.All, networkManager.PlayerHeroEntity.Owner);
-		networkManager.networkView.RPC("SetGameEnd", RPCMode.All, true);
+		networkManager.GetComponent<NetworkView>().RPC("EndPlayer", RPCMode.All, networkManager.PlayerHeroEntity.Owner);
+		networkManager.GetComponent<NetworkView>().RPC("SetGameEnd", RPCMode.All, true);
 	}
 }

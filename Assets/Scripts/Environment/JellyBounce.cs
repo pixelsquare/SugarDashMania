@@ -18,7 +18,7 @@ public class JellyBounce : BaseEnvironmentEntity {
 			Rigidbody2D rb2D = col.transform.GetComponent<Rigidbody2D>();
 
 			if (Mathf.Sign(rb2D.velocity.y) > 0f)
-				rb2D.rigidbody2D.AddForce(Vector2.up * upwardForce);
+				rb2D.GetComponent<Rigidbody2D>().AddForce(Vector2.up * upwardForce);
 
 			//BaseCharacterEntity heroEntity = col.transform.GetComponent<BaseCharacterEntity>();
 

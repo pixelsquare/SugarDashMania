@@ -8,7 +8,7 @@ public class MasterServerSwitch : BaseButtonEntity {
 
 	protected override void OnEnable() {
 		GameUtility.ChangeSortingLayerRecursively(buttonText.transform, LayerManager.SortingLayerUiFront);
-		buttonText.renderer.sortingOrder = 1;
+		buttonText.GetComponent<Renderer>().sortingOrder = 1;
 		base.OnEnable();
 	}
 
